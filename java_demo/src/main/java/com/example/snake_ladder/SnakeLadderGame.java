@@ -18,7 +18,7 @@ public class SnakeLadderGame {
 		System.out.println("currentPosition : " + currentPosition);
 		System.out.println("-------------------------------------------------");
 
-		
+		int totalSteps = 0;
 		while(currentPosition >=START_POSITION && currentPosition < WIN_STEP) {
 			diceCount = diceValue.nextInt(6) + 1;
 			optionFlag = optionValue.nextInt(3);
@@ -40,9 +40,10 @@ public class SnakeLadderGame {
 				
 			}
 			System.out.println("-------------------------------------------------");
+			totalSteps++;
 		}
 		
-		//System.out.println("Dice count: " + count);
+		System.out.println("Total Steps for completing: " + totalSteps);
 		
 	}
 }
