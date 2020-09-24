@@ -1,8 +1,13 @@
 package com.example.snake_ladder;
 
+import java.util.Random;
+
 public class SnakeLadderGame {
 	public static void main(String[] args) {
-		int position = 0;
-		System.out.println("Welcome to the game... This is a single plyer game!!! You current position is: " + position);
+		
+		Random random = new Random();
+		
+		int diceValue = random.nextInt(6) + 1;
+		System.out.println("Dice rolled and the value was: " + diceValue);
 	}
 }
