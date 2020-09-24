@@ -3,23 +3,30 @@ package com.example.snake_ladder;
 import java.util.Random;
 
 public class SnakeLadderGame {
+	
+	final static int START_POSITION = 0;
+	final static int WIN_STEP = 100;
+	final static int LADDER = 1;
+	final static int SNAKE = 2;
+	
 	public static void main(String[] args) {
 		
+		int[] currentPosition = {START_POSITION,START_POSITION};
+		SnakeLadderGame.gamePlay(currentPosition);
+		System.out.println("Player "  + (currentPosition[0] > currentPosition[1] ? 1 : 2) + " won!!!");
+	}
+	
+	public static void gamePlay(int[] currentPosition) {
 		Random diceValue = new Random();
 		Random optionValue = new Random();
-		final int WIN_STEP = 100;
-		final int START_POSITION = 0;
-		final int LADDER = 1;
-		final int SNAKE = 2;
-		int currentPosition = START_POSITION;
+		
 		int optionFlag;
 		int diceCount;
 		
-		System.out.println("currentPosition : " + currentPosition);
-		System.out.println("-------------------------------------------------");
-
-		int totalSteps = 0;
-		while(currentPosition >=START_POSITION && currentPosition < WIN_STEP) {
+		int playerChance = 0;
+		
+		while(true) {
+			System.out.println("player : " + (playerChance + 1));
 			diceCount = diceValue.nextInt(6) + 1;
 			optionFlag = optionValue.nextInt(3);
 			
@@ -27,23 +34,25 @@ public class SnakeLadderGame {
 			
 			switch(optionFlag) {
 			case LADDER:
-				currentPosition += ((currentPosition + diceCount) <= WIN_STEP) ? diceCount : 0;
-				System.out.println("Found a ladder.... currentPosition : " + currentPosition);
+				currentPosition[playerChance] += ((currentPosition[playerChance] + diceCount) <= WIN_STEP) ? diceCount : 0;
+				System.out.println("Found a ladder.... currentPosition : " + currentPosition[playerChance]);
 				break;
 			case SNAKE:
-				currentPosition -= ((currentPosition - diceCount) >= START_POSITION) ? diceCount : currentPosition;
-				System.out.println("Bitten by a snake.... currentPosition : " + currentPosition);
+				currentPosition[playerChance] -= ((currentPosition[playerChance] - diceCount) >= START_POSITION) ? diceCount : currentPosition[playerChance];
+				System.out.println("Bitten by a snake.... currentPosition : " + currentPosition[playerChance]);
 				break;
 			default:
-				System.out.println("No movement.... currentPosition : " + currentPosition);
+				System.out.println("No movement.... currentPosition : " + currentPosition[playerChance]);
 				break;
-				
 			}
+			
 			System.out.println("-------------------------------------------------");
-			totalSteps++;
+			
+			
+			if(!(currentPosition[playerChance] >=START_POSITION && currentPosition[playerChance] < WIN_STEP)) 
+				break;
+			playerChance = optionFlag == LADDER ? playerChance : (playerChance + 1) % 2;
 		}
-		
-		System.out.println("Total Steps for completing: " + totalSteps);
-		
+	
 	}
 }
