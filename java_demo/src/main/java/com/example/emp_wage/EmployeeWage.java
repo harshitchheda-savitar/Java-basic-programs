@@ -13,18 +13,21 @@ public class EmployeeWage {
 		
 		int empStatus = random.nextInt(3);
 		int empDailyWage;
-		if(empStatus == FULL_TIME) {
+		
+		switch(empStatus) {
+		case FULL_TIME:
 			empDailyWage = WAGE_PER_HOUR * FULL_DAY_HOUR;
 			System.out.println("The Employee is a FULL-TIME employee");
-		}
-		else if(empStatus == PART_TIME) {
+			break;
+		case PART_TIME:
 			empDailyWage = WAGE_PER_HOUR * HALF_DAY_HOUR;
 			System.out.println("The Employee is a PART-TIME employee");
-		}
-		else {
+			break;
+		default :
 			empDailyWage = 0;
 			System.out.println("The Employee is absent");
 		}
+		
 			
 		System.out.println("The person's daily wage is " + empDailyWage);	
 	}
