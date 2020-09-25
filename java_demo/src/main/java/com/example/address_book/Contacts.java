@@ -1,5 +1,6 @@
 package com.example.address_book;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Contacts {
@@ -84,11 +85,13 @@ public class Contacts {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "{id:"+this.id+",firstName:"+this.firstName+",lastName:"+this.lastName+",address:"+this.address+",city:"+this.city+",state:"+this.state+",zip:"+this.zip+"}";
+		return "{id:" + this.id + ",firstName:" + this.firstName + ",lastName:" + this.lastName + ",address:"
+				+ this.address + ",city:" + this.city + ",state:" + this.state + ",zip:" + this.zip + ",phoneNumbers:"
+				+ Arrays.toString(this.mobNo.toArray()) + ",emails:" + Arrays.toString(this.emailId.toArray()) + "}";
 	}
 
 }
