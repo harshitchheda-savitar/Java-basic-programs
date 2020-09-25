@@ -49,7 +49,7 @@ public class SnakeLadderGame {
 			System.out.println("-------------------------------------------------");
 			
 			
-			if(!(currentPosition[playerChance] >=START_POSITION && currentPosition[playerChance] < WIN_STEP)) 
+			if(!(currentPosition[playerChance] >=START_POSITION && currentPosition[playerChance] < WIN_STEP && currentPosition[(playerChance+1)%2] >=START_POSITION && currentPosition[(playerChance+1)%2] < WIN_STEP)) 
 				break;
 			playerChance = optionFlag == LADDER ? playerChance : (playerChance + 1) % 2;
 		}
