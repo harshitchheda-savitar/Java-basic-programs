@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //AddressBookMain class
-public class AddressBookMain {
+public class AddressBookMainUC1 {
 
 	public static final int MAX_COUNT = 5;
 
