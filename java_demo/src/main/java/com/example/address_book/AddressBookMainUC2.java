@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 //AddressBookMain class
-public class AddressBookUC2 {
+public class AddressBookMainUC2 {
 	// AddressBook has a list of contacts
 	static List<Contacts> contacts;
 

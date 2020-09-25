@@ -13,6 +13,7 @@ public class Contacts {
 	private String zip;
 	private List<String> mobNo;
 	private List<String> emailId;
+	private String adhaarNumber;
 
 	public String getFirstName() {
 		return firstName;
@@ -89,9 +90,18 @@ public class Contacts {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "{id:" + this.id + ",firstName:" + this.firstName + ",lastName:" + this.lastName + ",address:"
-				+ this.address + ",city:" + this.city + ",state:" + this.state + ",zip:" + this.zip + ",phoneNumbers:"
-				+ Arrays.toString(this.mobNo.toArray()) + ",emails:" + Arrays.toString(this.emailId.toArray()) + "}";
+		return "{id:" + this.id + ",firstName:" + this.firstName + ",lastName:" + this.lastName + ",adhaar:"
+				+ this.adhaarNumber + ",address:" + this.address + ",city:" + this.city + ",state:" + this.state
+				+ ",zip:" + this.zip + ",phoneNumbers:" + Arrays.toString(this.mobNo.toArray()) + ",emails:"
+				+ Arrays.toString(this.emailId.toArray()) + "}";
+	}
+
+	public String getAdhaarNumber() {
+		return adhaarNumber;
+	}
+
+	public void setAdhaarNumber(String adhaarNumber) {
+		this.adhaarNumber = adhaarNumber;
 	}
 
 }

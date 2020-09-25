@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 //AddressBookMain class
-public class AddressBookMain {
+public class AddressBookMainUC3 {
 	// AddressBook has a list of contacts
 	static Map<String, Object> contacts;
 	static int CONTACT_ID = 1;
