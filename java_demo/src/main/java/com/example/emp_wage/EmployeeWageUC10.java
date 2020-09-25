@@ -3,7 +3,7 @@ package com.example.emp_wage;
 import java.util.Random;
 
 //EmployeeWage class
-public class EmployeeWage {
+public class EmployeeWageUC10 {
 	// Declare static content
 	static final int FULL_TIME = 1;
 	static final int PART_TIME = 2;
@@ -79,7 +79,7 @@ public class EmployeeWage {
 	}
 
 	public static void main(String[] args) {
-		EmployeeWage employeeWage = new EmployeeWage();
+		EmployeeWageUC10 employeeWage = new EmployeeWageUC10();
 		// Initialize the company object with the parameters;
 		Company company1 = employeeWage.new Company();
 		company1.setTotalWorkingHours(100);
