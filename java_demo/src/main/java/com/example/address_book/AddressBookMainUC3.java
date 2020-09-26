@@ -28,15 +28,20 @@ public class AddressBookMainUC3 {
 			inputOption = sc.nextInt();
 			switch (inputOption) {
 			case ADD:
+				// get details of the contact
 				Contacts contact = addressBookService.getDetails(sc, addressBook);
+				// add contact to address-book
 				addressBookService.addContacts(addressBook, contact);
 				System.out.println("SuccessFully Added!!!!!");
 				System.out.println();
 				break;
 			case EDIT:
+				// search for the contact in addressBook
 				String searchString = addressBookService.searchForContact(sc, addressBook);
 				if (searchString != null) {
+					// get details for the new contact to be added
 					contact = addressBookService.getDetails(sc, addressBook);
+					// edit the contact in address-book
 					addressBookService.editContacts(searchString, addressBook, contact);
 				}
 				System.out.println("SuccessFully Edited!!!");

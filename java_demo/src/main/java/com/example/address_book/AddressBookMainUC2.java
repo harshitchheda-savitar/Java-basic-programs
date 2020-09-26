@@ -28,7 +28,9 @@ public class AddressBookMainUC2 {
 			inputOption = sc.nextInt();
 			switch (inputOption) {
 			case ADD:
+				// get details of the contact
 				Contacts contact = addressBookService.getDetails(sc, addressBook);
+				// add contact to address-book
 				addressBookService.addContacts(addressBook, contact);
 				System.out.println("SuccessFully Added!!!!!");
 				System.out.println();

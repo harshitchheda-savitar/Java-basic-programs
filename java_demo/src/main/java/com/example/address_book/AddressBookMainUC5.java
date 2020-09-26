@@ -31,23 +31,30 @@ public class AddressBookMainUC5 {
 			inputOption = sc.nextInt();
 			switch (inputOption) {
 			case ADD:
+				// get details of the contact
 				Contacts contact = addressBookService.getDetails(sc, addressBook);
+				// add contact to address-book
 				addressBookService.addContacts(addressBook, contact);
 				System.out.println("SuccessFully Added!!!!!");
 				System.out.println();
 				break;
 			case EDIT:
+				// search for the contact in addressBook
 				String searchString = addressBookService.searchForContact(sc, addressBook);
 				if (searchString != null) {
+					// get details for the new contact to be added
 					contact = addressBookService.getDetails(sc, addressBook);
+					// edit the contact in address-book
 					addressBookService.editContacts(searchString, addressBook, contact);
 				}
 				System.out.println("SuccessFully Edited!!!");
 				System.out.println();
 				break;
 			case DELETE:
+				// search for the contact in addressBook
 				searchString = addressBookService.searchForContact(sc, addressBook);
 				if (searchString != null) {
+					// delete the contact
 					addressBookService.deleteContacts(searchString, addressBook);
 				}
 				System.out.println("SuccessFully Deleted!!!");

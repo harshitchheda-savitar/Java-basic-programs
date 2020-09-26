@@ -52,10 +52,19 @@ public class AddressBookService implements AddressBookInterface {
 		addressBook.setContacts(contacts);
 	}
 
-	@Override
-	public void addMultipleBooks() {
-		// TODO Auto-generated method stub
+	public boolean addMultipleBooks(final Scanner sc, Map<String, AddressBook> map, AddressBook addressBook) {
+		System.out.println("Give a name to your addressBook");
+		String name = sc.next().trim().toLowerCase();
+		map.put(name, addressBook);
 
+		System.out.println("Successfully saved your addressBook.... Wanna add more addressBooks !?");
+		System.out.println("1 - yes , 2 - no");
+		switch (sc.nextInt()) {
+		case 1:
+			return true;
+		default:
+			return false;
+		}
 	}
 
 	@Override

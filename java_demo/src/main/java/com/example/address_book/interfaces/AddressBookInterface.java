@@ -16,7 +16,5 @@ public interface AddressBookInterface {
 
 	public void deleteContacts(String searchString, AddressBook addressBook);
 
-	public void addMultipleBooks();
-
 	public void displayAddressBook(AddressBook addressBook);
 }
