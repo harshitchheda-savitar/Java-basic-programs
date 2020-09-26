@@ -1,34 +1,35 @@
 package com.example.address_book;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.address_book.models.AddressBook;
+import com.example.address_book.models.Contacts;
+import com.example.address_book.services.AddressBookService;
 
 //AddressBookMain class
 public class AddressBookMainUC1 {
 
-	public static final int MAX_COUNT = 5;
-
 	public static void main(String[] args) {
 
-		List<Contacts> contacts = new ArrayList<>();
+		AddressBookService addressBookService = new AddressBookService();
 
-		// Adding contacts to address-book each with a unique id
-		int contactId = 1;
-		while (contactId <= MAX_COUNT) {
-			Contacts contact = new Contacts();
-			contact.setId(contactId++);
-			contact.setFirstName("harshit");
-			contact.setLastName("chheda");
-			contact.setAddress("somewhere");
-			contact.setCity("Mumbai");
-			contact.setState("Maharashtra");
-			contact.setZip("101010");
+		// initialize an address-book
+		AddressBook addressBook = new AddressBook();
+		addressBookService.initializeAddressBook(addressBook);
 
-			contacts.add(contact);
-		}
+		// Get details for the contact
+		Contacts contact = new Contacts();
+		contact.setFirstName("harshit");
+		contact.setLastName("chheda");
+		contact.setAddress("somewhere");
+		contact.setCity("Mumbai");
+		contact.setState("Maharashtra");
+		contact.setZip("101010");
+		contact.setAdhaarNumber("123512341234");
+
+		// Add contact
+		addressBookService.addContacts(addressBook, contact);
 
 		// Print the addressBook
-		System.out.println(contacts.toString());
+		addressBookService.displayAddressBook(addressBook);
 
 	}
 }

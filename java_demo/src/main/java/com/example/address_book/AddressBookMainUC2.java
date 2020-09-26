@@ -1,30 +1,23 @@
 package com.example.address_book;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+
+import com.example.address_book.models.AddressBook;
+import com.example.address_book.models.Contacts;
+import com.example.address_book.services.AddressBookService;
 
 //AddressBookMain class
 public class AddressBookMainUC2 {
-	// AddressBook has a list of contacts
-	List<Contacts> contacts;
 
-	public List<Contacts> getContacts() {
-		return this.contacts;
-	}
-
-	public void setContacts(List<Contacts> contacts) {
-		this.contacts = contacts;
-	}
+	static final int ADD = 1;
 
 	public static void main(String[] args) {
 
-		final int ADD = 1;
+		AddressBookService addressBookService = new AddressBookService();
 
-		AddressBookMainUC2 addressBook = new AddressBookMainUC2();
-		addressBook.setContacts(new ArrayList<>());
-		// Adding contacts to address-book each with a unique id
-		int contactId = 1;
+		// initialize an address-book
+		AddressBook addressBook = new AddressBook();
+		addressBookService.initializeAddressBook(addressBook);
 
 		Scanner sc = new Scanner(System.in);
 		int inputOption;
@@ -35,7 +28,10 @@ public class AddressBookMainUC2 {
 			inputOption = sc.nextInt();
 			switch (inputOption) {
 			case ADD:
-				addContact(sc, contactId, addressBook);
+				Contacts contact = addressBookService.getDetails(sc, addressBook);
+				addressBookService.addContacts(addressBook, contact);
+				System.out.println("SuccessFully Added!!!!!");
+				System.out.println();
 				break;
 			default:
 				flag = false;
@@ -45,55 +41,7 @@ public class AddressBookMainUC2 {
 		}
 
 		// Print the addressBook
-		System.out.println(addressBook.getContacts().toString());
+		addressBookService.displayAddressBook(addressBook);
 
-	}
-
-	public static void addContact(Scanner sc, int contactId, AddressBookMainUC2 addressBook) {
-
-		List<Contacts> contacts = addressBook.getContacts();
-		Contacts contact = new Contacts();
-
-		// Take user-input
-		System.out.println("Enter the firstName:");
-		contact.setFirstName(sc.next());
-		System.out.println("Enter the lastName:");
-		contact.setLastName(sc.next());
-		System.out.println("Enter the Address:");
-		contact.setAddress(sc.next());
-		System.out.println("Enter the city:");
-		contact.setCity(sc.next());
-		System.out.println("Enter the state:");
-		contact.setState(sc.next());
-		System.out.println("Enter the zipcode:");
-		contact.setZip(sc.next());
-
-		System.out.println("How many Numbers you want to insert");
-		int count = sc.nextInt();
-		if (count > 0) {
-			System.out.println("Enter the numbers followed by a new line for each number");
-			List<String> mobNo = new ArrayList<>();
-			for (int i = 0; i < count; i++) {
-				mobNo.add(sc.next());
-			}
-			contact.setMobNo(mobNo);
-		}
-
-		System.out.println("How many emailIds you want to insert");
-		count = sc.nextInt();
-		if (count > 0) {
-			System.out.println("Enter the emailIds followed by a new line for each emailId");
-			List<String> email = new ArrayList<>();
-			for (int i = 0; i < count; i++) {
-				email.add(sc.next());
-			}
-			contact.setEmailId(email);
-		}
-		contact.setId(contactId++);
-		// Add to addressBook
-		contacts.add(contact);
-		addressBook.setContacts(contacts);
-		System.out.println("SuccessFully Added");
-		System.out.println();
 	}
 }
