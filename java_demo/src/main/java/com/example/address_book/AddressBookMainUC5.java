@@ -36,7 +36,7 @@ public class AddressBookMainUC5 {
 
 		boolean flag = true;
 		while (flag) {
-			System.out.println("Enter the option[1-ADD, 0-EXIT]:");
+			System.out.println("Enter the option[1-ADD, 2-EDIT , 3-DELETE, 4-BULK-ADD, 0-EXIT]:");
 			inputOption = sc.nextInt();
 			switch (inputOption) {
 			case ADD:
