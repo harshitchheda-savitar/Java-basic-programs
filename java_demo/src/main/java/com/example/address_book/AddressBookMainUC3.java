@@ -9,15 +9,24 @@ import java.util.Scanner;
 //AddressBookMain class
 public class AddressBookMainUC3 {
 	// AddressBook has a list of contacts
-	static Map<String, Object> contacts;
+	Map<String, Object> contacts;
 	static int CONTACT_ID = 1;
+
+	public Map<String, Object> getContacts() {
+		return this.contacts;
+	}
+
+	public void setContacts(Map<String, Object> contacts) {
+		this.contacts = contacts;
+	}
 
 	public static void main(String[] args) {
 
 		final int ADD = 1;
 		final int EDIT = 2;
 
-		contacts = new HashMap<>();
+		AddressBookMainUC3 addressBook = new AddressBookMainUC3();
+		addressBook.setContacts(new HashMap<>());
 		// Adding contacts to address-book each with a unique id
 
 		Scanner sc = new Scanner(System.in);
@@ -29,14 +38,16 @@ public class AddressBookMainUC3 {
 			inputOption = sc.nextInt();
 			switch (inputOption) {
 			case ADD:
-				Contacts contact = addContact(sc, contacts);
+				Contacts contact = addContact(sc, addressBook.getContacts());
+				Map<String, Object> contacts = addressBook.getContacts();
 				contacts.put(contact.getFirstName().toLowerCase() + contact.getLastName().toLowerCase()
 						+ contact.getAdhaarNumber(), contact);
+				addressBook.setContacts(contacts);
 				System.out.println("SuccessFully Added");
 				System.out.println();
 				break;
 			case EDIT:
-				editContact(sc, contacts);
+				editContact(sc, addressBook);
 				break;
 			default:
 				flag = false;
@@ -45,7 +56,7 @@ public class AddressBookMainUC3 {
 		}
 
 		// Print the addressBook
-		System.out.println(contacts.toString());
+		System.out.println(addressBook.getContacts().toString());
 
 	}
 
@@ -94,7 +105,10 @@ public class AddressBookMainUC3 {
 		return contact;
 	}
 
-	public static void editContact(Scanner sc, Map<String, Object> contacts) {
+	public static void editContact(Scanner sc, AddressBookMainUC3 addressBook) {
+
+		Map<String, Object> contacts = addressBook.getContacts();
+
 		String input = "";
 		System.out.println("Enter the firstName:");
 		input += sc.next().toLowerCase().trim();
@@ -115,6 +129,8 @@ public class AddressBookMainUC3 {
 				contacts.remove(input);
 				contacts.put(comparingString, newCon);
 			}
+
+			addressBook.setContacts(contacts);
 			System.out.println("SuccessFully Added");
 		} else
 			System.out.println("No contact found!!");

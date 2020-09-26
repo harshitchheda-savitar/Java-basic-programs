@@ -7,13 +7,22 @@ import java.util.Scanner;
 //AddressBookMain class
 public class AddressBookMainUC2 {
 	// AddressBook has a list of contacts
-	static List<Contacts> contacts;
+	List<Contacts> contacts;
+
+	public List<Contacts> getContacts() {
+		return this.contacts;
+	}
+
+	public void setContacts(List<Contacts> contacts) {
+		this.contacts = contacts;
+	}
 
 	public static void main(String[] args) {
 
 		final int ADD = 1;
 
-		contacts = new ArrayList<>();
+		AddressBookMainUC2 addressBook = new AddressBookMainUC2();
+		addressBook.setContacts(new ArrayList<>());
 		// Adding contacts to address-book each with a unique id
 		int contactId = 1;
 
@@ -26,7 +35,7 @@ public class AddressBookMainUC2 {
 			inputOption = sc.nextInt();
 			switch (inputOption) {
 			case ADD:
-				addContact(sc, contactId, contacts);
+				addContact(sc, contactId, addressBook);
 				break;
 			default:
 				flag = false;
@@ -36,14 +45,16 @@ public class AddressBookMainUC2 {
 		}
 
 		// Print the addressBook
-		System.out.println(contacts.toString());
+		System.out.println(addressBook.getContacts().toString());
 
 	}
 
-	public static void addContact(Scanner sc, int contactId, List<Contacts> contacts) {
+	public static void addContact(Scanner sc, int contactId, AddressBookMainUC2 addressBook) {
+
+		List<Contacts> contacts = addressBook.getContacts();
 		Contacts contact = new Contacts();
 
-		//Take user-input
+		// Take user-input
 		System.out.println("Enter the firstName:");
 		contact.setFirstName(sc.next());
 		System.out.println("Enter the lastName:");
@@ -79,8 +90,9 @@ public class AddressBookMainUC2 {
 			contact.setEmailId(email);
 		}
 		contact.setId(contactId++);
-		//Add to addressBook
+		// Add to addressBook
 		contacts.add(contact);
+		addressBook.setContacts(contacts);
 		System.out.println("SuccessFully Added");
 		System.out.println();
 	}

@@ -9,8 +9,16 @@ import java.util.Scanner;
 //AddressBookMain class
 public class AddressBookMainUC4 {
 	// AddressBook has a list of contacts
-	static Map<String, Object> contacts;
+	Map<String, Object> contacts;
 	static int CONTACT_ID = 1;
+
+	public Map<String, Object> getContacts() {
+		return this.contacts;
+	}
+
+	public void setContacts(Map<String, Object> contacts) {
+		this.contacts = contacts;
+	}
 
 	public static void main(String[] args) {
 
@@ -18,7 +26,8 @@ public class AddressBookMainUC4 {
 		final int EDIT = 2;
 		final int DELETE = 3;
 
-		contacts = new HashMap<>();
+		AddressBookMainUC4 addressBook = new AddressBookMainUC4();
+		addressBook.setContacts(new HashMap<>());
 		// Adding contacts to address-book each with a unique id
 
 		Scanner sc = new Scanner(System.in);
@@ -30,17 +39,20 @@ public class AddressBookMainUC4 {
 			inputOption = sc.nextInt();
 			switch (inputOption) {
 			case ADD:
-				Contacts contact = addContact(sc, contacts);
+				Contacts contact = addContact(sc, addressBook.getContacts());
+				Map<String, Object> contacts = addressBook.getContacts();
 				contacts.put(contact.getFirstName().toLowerCase() + contact.getLastName().toLowerCase()
 						+ contact.getAdhaarNumber(), contact);
+				addressBook.setContacts(contacts);
 				System.out.println("SuccessFully Added");
 				System.out.println();
 				break;
 			case EDIT:
-				editContact(sc, contacts);
+				editContact(sc, addressBook);
 				break;
 			case DELETE:
-				deleteContact(sc, contacts);
+				deleteContact(sc, addressBook);
+				break;
 			default:
 				flag = false;
 				break;
@@ -48,7 +60,7 @@ public class AddressBookMainUC4 {
 		}
 
 		// Print the addressBook
-		System.out.println(contacts.toString());
+		System.out.println(addressBook.getContacts().toString());
 
 	}
 
@@ -97,7 +109,9 @@ public class AddressBookMainUC4 {
 		return contact;
 	}
 
-	public static void editContact(Scanner sc, Map<String, Object> contacts) {
+	public static void editContact(Scanner sc, AddressBookMainUC4 addressBook) {
+		Map<String, Object> contacts = addressBook.getContacts();
+
 		String input = "";
 		System.out.println("Enter the firstName:");
 		input += sc.next().toLowerCase().trim();
@@ -118,13 +132,17 @@ public class AddressBookMainUC4 {
 				contacts.remove(input);
 				contacts.put(comparingString, newCon);
 			}
-			System.out.println("SuccessFully Added");
+
+			addressBook.setContacts(contacts);
+			System.out.println("SuccessFully Edited");
 		} else
 			System.out.println("No contact found!!");
 		System.out.println();
 	}
 
-	public static void deleteContact(Scanner sc, Map<String, Object> contacts) {
+	public static void deleteContact(Scanner sc, AddressBookMainUC4 addressBook) {
+
+		Map<String, Object> contacts = addressBook.getContacts();
 		String input = "";
 		System.out.println("Enter the firstName:");
 		input += sc.next().toLowerCase().trim();
@@ -135,6 +153,8 @@ public class AddressBookMainUC4 {
 		// Check if the key exists if so take the whole input from user all-over
 		if (contacts.containsKey(input)) {
 			contacts.remove(input);
+
+			addressBook.setContacts(contacts);
 			System.out.println("SuccessFully Deleted");
 		} else
 			System.out.println("No contact found!!");
