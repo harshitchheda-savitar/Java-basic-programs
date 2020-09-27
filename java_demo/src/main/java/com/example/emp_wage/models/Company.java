@@ -2,6 +2,7 @@ package com.example.emp_wage.models;
 
 public class Company {
 
+	private String companyName;
 	private int wagePerHour;
 	private int workingDaysInMonth;
 	private int totalWorkingHours;
@@ -46,6 +47,14 @@ public class Company {
 
 	public void setHalfDayShiftHrs(int halfDayShiftHrs) {
 		this.halfDayShiftHrs = halfDayShiftHrs;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 }

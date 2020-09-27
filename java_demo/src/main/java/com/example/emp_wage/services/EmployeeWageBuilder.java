@@ -2,13 +2,16 @@ package com.example.emp_wage.services;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import com.example.emp_wage.interfaces.EmployeeWageInterface1;
 import com.example.emp_wage.models.Company;
 import com.example.emp_wage.models.Employee1;
 import com.example.emp_wage.models.Employee2;
+import com.example.emp_wage.models.Employee3;
 
 public class EmployeeWageBuilder implements EmployeeWageInterface1 {
 
@@ -29,6 +32,19 @@ public class EmployeeWageBuilder implements EmployeeWageInterface1 {
 	public Company getDetails(int wagePerHour, int workingDaysInMonth, int totalWorkingHours, int fullDayShiftHrs,
 			int halfDayShiftHrs) {
 		Company company = new Company();
+		company.setTotalWorkingHours(totalWorkingHours);
+		company.setWagePerHour(wagePerHour);
+		company.setWorkingDaysInMonth(workingDaysInMonth);
+		company.setFullDayShiftHrs(fullDayShiftHrs);
+		company.setHalfDayShiftHrs(halfDayShiftHrs);
+
+		return company;
+	}
+	
+	public Company getDetails(String companyName ,int wagePerHour, int workingDaysInMonth, int totalWorkingHours, int fullDayShiftHrs,
+			int halfDayShiftHrs) {
+		Company company = new Company();
+		company.setCompanyName(companyName);
 		company.setTotalWorkingHours(totalWorkingHours);
 		company.setWagePerHour(wagePerHour);
 		company.setWorkingDaysInMonth(workingDaysInMonth);
@@ -142,6 +158,46 @@ public class EmployeeWageBuilder implements EmployeeWageInterface1 {
 			emp.setMonthlyWageAmt(calculate(emp.getCompanyList()));
 		}
 		System.out.println("The person's monthly wage is " + emp.getMonthlyWageAmt());
+	}
+	
+	public void EmployeeCompanyWiseCalculator(Employee3 emp) {
+		Random random = new Random();
+		int empWorkHrs;
+		int workDayCount;
+		
+		Map<String,Integer> map = new HashMap<>();
+		
+		for (Company c : emp.getCompanyList()) {
+			int totalWage = 0;
+
+			// Initialize the local variables
+			empWorkHrs = 0;
+			workDayCount = 0;
+			// Iterate till the working-month is over or the employee-monthly working hours
+			// are fulfilled
+			while (workDayCount < c.getWorkingDaysInMonth() && empWorkHrs < c.getTotalWorkingHours()) {
+				// Generate a random number for employee shift type for each day
+				int empStatus = random.nextInt(3);
+				// increment the working-day count
+				++workDayCount;
+				// Check for the employee shift type on the day and calculate the daily wage and
+				// add it to the monthly wage amount
+				switch (empStatus) {
+				case FULL_TIME:
+					empWorkHrs += c.getFullDayShiftHrs();
+					totalWage += c.getWagePerHour() * c.getFullDayShiftHrs();
+					break;
+				case PART_TIME:
+					empWorkHrs += c.getHalfDayShiftHrs();
+					totalWage += c.getWagePerHour() * c.getHalfDayShiftHrs();
+					break;
+				default:
+					break;
+				}
+			}
+			map.put(c.getCompanyName(), totalWage);
+		}
+		emp.setCompanyEmployeeWageMapping(map);
 	}
 
 }
