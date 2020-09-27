@@ -14,6 +14,7 @@ public class EmployeeWageUC9 {
 		EmployeeWageUC9 employeeWage = new EmployeeWageUC9();
 		// Initialize the company object with the parameters;
 		Company company = employeeWage.new Company();
+		company.setName("adani");
 		company.setTotalWorkingHours(100);
 		company.setWagePerHour(20);
 		company.setWorkingDaysInMonth(20);
@@ -69,6 +70,7 @@ public class EmployeeWageUC9 {
 
 	// Create a company class with the instance variables
 	public class Company {
+		private String name;
 		private int wagePerHour;
 		private int workingDaysInMonth;
 		private int totalWorkingHours;
@@ -95,6 +97,14 @@ public class EmployeeWageUC9 {
 
 		public void setTotalWorkingHours(int totalWorkingHours) {
 			this.totalWorkingHours = totalWorkingHours;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
 		}
 
 	}

@@ -11,18 +11,16 @@ public class EmployeeWageUC8 {
 	static final int HALF_DAY_HOUR = 4;
 
 	public static void main(String[] args) {
-		EmployeeWageUC8 employee = new EmployeeWageUC8();
-		// Initialize the company object with the parameters;
-		Company c1 = employee.new Company(20, 20, 100);
-		Company c2 = employee.new Company(25, 30, 120);
+
 		// Pass the company object as argument to the class method
-		EmployeeWageCalculator(c1);
+		EmployeeWageCalculator(20, 20, 100);
 		System.out.println();
-		EmployeeWageCalculator(c2);
+		EmployeeWageCalculator(25, 30, 120);
 	}
 
 	// Class-method
-	public static void EmployeeWageCalculator(Company c) {
+	public static void EmployeeWageCalculator(final int wagePerHour, final int workingDaysInMonth,
+			final int totalWorkingHours) {
 		Random random = new Random();
 		// Initialize the local variables
 		int empDailyWage = 0;
@@ -31,7 +29,7 @@ public class EmployeeWageUC8 {
 
 		// Iterate till the working-month is over or the employee-monthly working hours
 		// are fulfilled
-		while ((workDayCount < c.workingDaysInMonth) && (empWorkHrs < c.totalWorkingHours)) {
+		while (workDayCount < workingDaysInMonth && empWorkHrs < totalWorkingHours) {
 			// Generate a random number for employee shift type for each day
 			int empStatus = random.nextInt(3);
 			// increment the working-day count
@@ -41,12 +39,12 @@ public class EmployeeWageUC8 {
 			switch (empStatus) {
 			case FULL_TIME:
 				empWorkHrs += FULL_DAY_HOUR;
-				empDailyWage += c.wagePerHour * FULL_DAY_HOUR;
+				empDailyWage += wagePerHour * FULL_DAY_HOUR;
 				System.out.println("Day " + workDayCount + ": The Employee is a FULL-TIME shift");
 				break;
 			case PART_TIME:
 				empWorkHrs += HALF_DAY_HOUR;
-				empDailyWage += c.wagePerHour * HALF_DAY_HOUR;
+				empDailyWage += wagePerHour * HALF_DAY_HOUR;
 				System.out.println("Day " + workDayCount + ": The Employee is a PART-TIME shift");
 				break;
 			default:
@@ -55,18 +53,5 @@ public class EmployeeWageUC8 {
 		}
 
 		System.out.println("The person's monthly wage is " + empDailyWage);
-	}
-
-	// Create a company class with the instance variables
-	public class Company {
-		int wagePerHour;
-		int workingDaysInMonth;
-		int totalWorkingHours;
-
-		public Company(int wagePerHour, int workingDaysInMonth, int totalWorkingHours) {
-			this.wagePerHour = wagePerHour;
-			this.totalWorkingHours = totalWorkingHours;
-			this.workingDaysInMonth = workingDaysInMonth;
-		}
 	}
 }

@@ -61,6 +61,7 @@ public class AddressBookService implements AddressBookInterface {
 		System.out.println("1 - yes , 2 - no");
 		switch (sc.nextInt()) {
 		case 1:
+			addressBook.setContacts(new HashMap<>());
 			return true;
 		default:
 			return false;
