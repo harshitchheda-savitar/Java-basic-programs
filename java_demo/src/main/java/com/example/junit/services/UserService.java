@@ -15,7 +15,7 @@ public class UserService {
 	// user-name part followed by option part(. and then second user-name part)
 	// followed by @ symbol and then by domain then . and then co-domain and then by
 	// optional part(. and then inner domain)
-	static final String emailRegex = "^[a-zA-Z0-9]+([\\. | \\- | \\_]{1}[A-Za-z0-9]+)*(@){1}[a-zA-Z]+\\.[a-zA-Z]{2,}(\\.[A-Za-z]{2,})?$";
+	static final String emailRegex = "^[a-zA-Z0-9]+([\\. | \\- | \\_]{1}[A-Za-z0-9]+)*(@){1}[a-zA-Z0-9]+\\.[a-zA-Z]{2,}(\\.[A-Za-z]{2,})?$";
 	// minimum length of password is 8
 	static final String passwordLength = "^.{8,}$";
 	// At-least one upper-case character in password

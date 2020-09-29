@@ -3,7 +3,7 @@ package com.example.junit;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,15 +30,19 @@ public class UserValidationTest {
 		this.password = password;
 	}
 
+	public UserValidationTest(String emailId) {
+		this.emailId = emailId;
+	}
+
 	@Before
 	public void init() {
 		userService = new UserService();
 	}
 
 	@Parameters
-	public static Collection<?> input() {
+	public static List<String[]> input() {
 		return Arrays.asList(
-				new Object[][] { { "Harshit", "Chheda", "91 7666704112", "harshit.chheda@yahoo.com", "Harshit05#" } });
+				new String[][] { { "Harshit", "Chheda", "91 7666704112", "harshit.chheda@yahoo.com", "Harshit05#" } });
 	}
 
 	@Test
@@ -65,4 +69,5 @@ public class UserValidationTest {
 	public void testPasswordTest() {
 		assertTrue(userService.validatePassword(password));
 	}
+
 }
