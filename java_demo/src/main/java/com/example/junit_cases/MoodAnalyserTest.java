@@ -6,7 +6,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.example.junit.services.UserService;
+import com.example.junit_cases.services.UserService;
 
 public class MoodAnalyserTest {
 

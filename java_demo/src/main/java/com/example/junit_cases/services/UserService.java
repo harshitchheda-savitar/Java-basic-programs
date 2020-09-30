@@ -1,4 +1,4 @@
-package com.example.junit.services;
+package com.example.junit_cases.services;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.example.junit.services.UserService;
+import com.example.junit_cases.services.UserService;
 
 @RunWith(Parameterized.class)
 public class EmailValidationTest {
