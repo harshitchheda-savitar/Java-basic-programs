@@ -1,4 +1,4 @@
-package com.example.junit;
+package com.example.junit_cases;
 
 import static org.junit.Assert.assertTrue;
 
@@ -46,27 +46,27 @@ public class UserValidationTest {
 	}
 
 	@Test
-	public void testFirstNameTest() {
+	public void firstNameCriteriaTest() {
 		assertTrue(userService.validateFirstName(firstName));
 	}
 
 	@Test
-	public void testLastNameTest() {
+	public void lastNameCriteriaTest() {
 		assertTrue(userService.validateLastName(lastName));
 	}
 
 	@Test
-	public void testMobileTest() {
+	public void MobileCriteriaTest() {
 		assertTrue(userService.validateMobile(mobNo));
 	}
 
 	@Test
-	public void testEmailTest() {
+	public void emailCriteriaTest() {
 		assertTrue(userService.validateEmail(emailId));
 	}
 
 	@Test
-	public void testPasswordTest() {
+	public void passwordCriteriaTest() {
 		assertTrue(userService.validatePassword(password));
 	}
 
